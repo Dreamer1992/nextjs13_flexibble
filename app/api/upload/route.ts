@@ -2,9 +2,9 @@ import { v2 as cloudinary } from 'cloudinary'
 import { NextRequest, NextResponse } from 'next/server'
 
 cloudinary.config({
-  cloud_name: '',
-  api_key: '',
-  api_secret: '',
+  cloud_name: process.env.CLOUDINARY_NAME,
+  api_key: process.env.CLOUDINARY_KEY,
+  api_secret: process.env.CLOUDINARY_SECRET,
 })
 
 export async function POST(req: Request) {

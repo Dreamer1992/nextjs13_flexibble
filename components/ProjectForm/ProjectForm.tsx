@@ -12,7 +12,7 @@ import { categoryFilters } from '@/constant'
 
 import { IFormState, IProjectInterface, ISession } from '@/common.types'
 
-// import { updateProject, createNewProject, fetchToken } from '@/lib/actions'
+import { createNewProject, fetchToken } from '@/lib/actions'
 
 type Props = {
   type: string
@@ -63,31 +63,31 @@ const ProjectForm = ({ type, session, project }: Props) => {
   const handleFormSubmit = async (e: FormEvent) => {
     e.preventDefault()
 
-    // setSubmitting(true)
+    setSubmitting(true)
 
-    // const { token } = await fetchToken()
+    const { token } = await fetchToken()
 
-    // try {
-    //   if (type === 'create') {
-    //     await createNewProject(form, session?.user?.id, token)
+    try {
+      if (type === 'create') {
+        await createNewProject(form, session?.user?.id, token)
 
-    //     router.push('/')
-    //   }
+        router.push('/')
+      }
 
-    //   if (type === 'edit') {
-    //     await updateProject(form, project?.id as string, token)
+      //   if (type === 'edit') {
+      //     await updateProject(form, project?.id as string, token)
 
-    //     router.push('/')
-    //   }
-    // } catch (error) {
-    //   alert(
-    //     `Failed to ${
-    //       type === 'create' ? 'create' : 'edit'
-    //     } a project. Try again!`
-    //   )
-    // } finally {
-    //   setSubmitting(false)
-    // }
+      //     router.push('/')
+      //   }
+    } catch (error) {
+      alert(
+        `Failed to ${
+          type === 'create' ? 'create' : 'edit'
+        } a project. Try again!`
+      )
+    } finally {
+      setSubmitting(false)
+    }
   }
 
   return (
